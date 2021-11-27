@@ -11,12 +11,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-app = dash.Dash()
-server = app.server
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 def getCoverage():
     output = {
@@ -62,9 +56,7 @@ def getLocalBoundaries():
     output = json.loads(response.text)
     return output
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def createFig():
     jsIn = getLocalBoundaries()
     suburbDict = getCoverage()
     mapboxToken = 'pk.eyJ1IjoiczM3NTA5NTQiLCJhIjoiY2tiZjl3MnZnMGxsdzJxbjRpNDI3a2J3NyJ9.kOhuIXCnopGdLKBVIcvydg'
@@ -128,11 +120,18 @@ if __name__ == '__main__':
             'layers': layerList
         },
         margin={'l': 0, 'r': 0, 'b': 0, 't': 0})
+    return fig
 
 
-    app.layout = html.Div([
-        dcc.Graph(figure=fig)
-    ])
-    app.run_server(debug=True, use_reloader=False)
+# Press the green button in the gutter to run the script.
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
+figToShow = createFig()
+app.layout = html.Div([
+    dcc.Graph(figure=figToShow)
+])
+if __name__ == '__main__':
+    app.run_server(debug=True)
     # fig.write_html("file.html")
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
