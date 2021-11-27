@@ -63,6 +63,8 @@ def getLocalBoundaries():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    app = dash.Dash()
+    server = app.server
     jsIn = getLocalBoundaries()
     suburbDict = getCoverage()
     mapboxToken = 'pk.eyJ1IjoiczM3NTA5NTQiLCJhIjoiY2tiZjl3MnZnMGxsdzJxbjRpNDI3a2J3NyJ9.kOhuIXCnopGdLKBVIcvydg'
@@ -127,8 +129,7 @@ if __name__ == '__main__':
         },
         margin={'l': 0, 'r': 0, 'b': 0, 't': 0})
 
-    app = dash.Dash()
-    server = app.server
+
     app.layout = html.Div([
         dcc.Graph(figure=fig)
     ])
