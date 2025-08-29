@@ -211,7 +211,7 @@ def create_school_fig():
                 'below': "traces",
                 'color': colourList[score],
                 'fill': {'outlinecolor':colourList[score]},
-                'opacity': 0.7
+                'opacity': 0.4
             }
         )
     
