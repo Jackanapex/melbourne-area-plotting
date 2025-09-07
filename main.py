@@ -167,6 +167,10 @@ def create_school_fig():
     jsIn = getSchoolBoundariesSaved()
     suburbDict = read_school_table('top_10pct_primary_schools.tsv')
     unique_school_names = set(suburbDict.keys())
+    available_school_names = set([item['properties']['School_Name'].upper() for item in jsIn['features']])
+    # find the names missing from available_school_names but present in unique_school_names
+    missing_school_names = unique_school_names - available_school_names
+    print(f"Missing school names: {missing_school_names}")
     mapboxToken = 'pk.eyJ1IjoiczM3NTA5NTQiLCJhIjoiY2tiZjl3MnZnMGxsdzJxbjRpNDI3a2J3NyJ9.kOhuIXCnopGdLKBVIcvydg'
     jsCopy = {}
     layerList = []
