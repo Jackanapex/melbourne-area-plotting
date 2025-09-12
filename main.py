@@ -235,7 +235,7 @@ def create_school_fig():
     fig.update_layout(
         mapbox={
             'accesstoken': mapboxToken,
-            'style': "light",
+            'style': "streets",
             'center': {'lon': 145.02, 'lat': -37.94},
             # -37.814364596881546, 144.9597853404137
             # -37.91725010865954, 145.02890041628314
